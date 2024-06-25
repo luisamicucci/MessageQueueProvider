@@ -6,9 +6,12 @@ services:
     ports:
       - "4222:4222"
       - "8222:8222"
+    networks:
+      - monitoring
     command: [
       "--jetstream",
-      "--store_dir=/data"
+      "--store_dir=/data",
+      "-m", "8222"  # This enables the monitoring endpoint on port 8222
     ]
     volumes:
       - nats_data:/data
@@ -18,6 +21,8 @@ services:
     container_name: prometheus
     ports:
       - "9090:9090"
+    networks:
+      - monitoring
     volumes:
       - C:\Users\luis.amicucci\Documents\Projects\MessageQueueProvider\prometheus.yml:/etc/prometheus/prometheus.yml
     depends_on:
@@ -28,6 +33,8 @@ services:
     container_name: grafana
     ports:
       - "3000:3000"
+    networks:
+      - monitoring
     environment:
       - GF_SECURITY_ADMIN_PASSWORD=admin
     depends_on:
@@ -35,3 +42,7 @@ services:
 
 volumes:
   nats_data:
+
+networks:
+  monitoring:
+    driver: bridge
