@@ -1,1 +1,1 @@
-# AzureServiceBus
+# Message Queue Provider
