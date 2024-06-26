@@ -25,8 +25,4 @@ To get started, follow these steps:
 
 8. Analyze the deduplication results and make any necessary adjustments to your application logic.
 
-For more detailed information and configuration options, refer to the documentation provided with the C# console app.
-
-Happy testing!
-
 
